@@ -1,0 +1,29 @@
+{
+  "name": "tas-blockbuster",
+  "version": "1.0.0",
+  "description": "TAS project - Blockbuster",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dBanasiak/TAS-Blockbuster.git"
+  },
+  "keywords": [
+    "Node.js",
+    "Vue",
+    "MongoDB"
+  ],
+  "author": "Damian Bansiak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dBanasiak/TAS-Blockbuster/issues"
+  },
+  "homepage": "https://github.com/dBanasiak/TAS-Blockbuster#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.3.2"
+  }
+}
