@@ -12,6 +12,10 @@
   "author": "dbanasiak",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.5.2",
+    "joi": "^14.0.0",
+    "jsonwebtoken": "^8.3.0",
     "sequelize": "^4.39.1",
     "sqlite3": "^4.0.2"
   },
