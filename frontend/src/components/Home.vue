@@ -1,7 +1,8 @@
 <template>
   <v-layout column>
     <v-flex>
-      <span class="cats">龴ↀ◡ↀ龴 </span>
+      <div class="cats">龴ↀ◡ↀ龴 </div>
+      <img src="../assets/cat.jpg" />
     </v-flex>
   </v-layout>
 </template>

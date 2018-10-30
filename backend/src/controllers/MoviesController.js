@@ -1,9 +1,9 @@
-const { Movie } = require('../models')
+const { Movies } = require('../models')
 
 module.exports = {
   async addMovie (req, res) {
     try {
-      const movie = await Movie.create(req.body)
+      const movie = await Movies.create(req.body)
       res.send(movie)
     } catch (err) {
       res.status(500).send({
@@ -13,13 +13,19 @@ module.exports = {
   },
   async getAllMovies (req, res) {
     try {
-      const movies = await Movie.findAll({
-        limit: 15
-      })
+      let movies = null
+      const search = req.query.search
+      if (search) {
+        movies = await Movies.findAll()
+      } else {
+        movies = await Movies.findAll({
+          limit: 10
+        })
+      }
       res.send(movies)
     } catch (err) {
       res.status(500).send({
-        error: 'An error has occured trying to get your movies list'
+        error: 'an error has occured trying to fetch the songs'
       })
     }
   }
