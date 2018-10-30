@@ -22,7 +22,7 @@
         <br>
         <v-btn
           dark
-          class="cyan"
+          class="darkgrey"
           @click="register">
           Register
         </v-btn>
@@ -51,7 +51,7 @@ export default {
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
         this.$router.push({
-          name: 'login'
+          name: 'home'
         })
       } catch (error) {
         this.error = error.response.data.error
