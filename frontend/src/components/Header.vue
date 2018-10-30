@@ -23,6 +23,10 @@
           name: 'register'})">
         Sign Up!
       </v-btn>
+      <v-btn flat dark v-if="$store.state.isUserLogedIn" class="cart-icon" @click="navigateTo({
+          name: 'cart'})">
+        <i class="fas fa-shopping-cart"></i>
+      </v-btn>
       <v-btn flat dark v-if="$store.state.isUserLogedIn"
         @click="logout({
           name: 'home'})">
@@ -56,5 +60,9 @@ export default {
   font-size: 1.1em;
   color: yellow;
   font-weight: 700;
+}
+
+.cart-icon {
+  font-size: 2.1em;
 }
 </style>
