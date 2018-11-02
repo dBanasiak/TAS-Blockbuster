@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     writers: DataTypes.STRING,
     stars: DataTypes.STRING,
     rate: DataTypes.STRING,
-    movieCoverUrl: DataTypes.STRING
+    movieCoverUrl: DataTypes.STRING,
+    userId: DataTypes.STRING
   })
 
   Movies.associate = function (models) {
