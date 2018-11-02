@@ -33,4 +33,10 @@ font-family: 'Chakra Petch', sans-serif;
   margin-top: 60px;
   background-color: whitesmoke;
 }
+
+.error-text {
+  background-color: transparent;
+  color: red;
+  font-size: 1.2em;
+}
 </style>

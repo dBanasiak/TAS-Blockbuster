@@ -4,6 +4,7 @@ import Register from '@/components/Register'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
 import Movies from '@/components/Movies'
+import AddMovie from '@/components/AddMovie'
 import Cart from '@/components/Cart'
 
 Vue.use(Router)
@@ -34,6 +35,11 @@ export default new Router({
       path: '/movies',
       name: 'movies',
       component: Movies
+    },
+    {
+      path: '/movies/add',
+      name: 'movies-add',
+      component: AddMovie
     }
   ]
 })
