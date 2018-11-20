@@ -1,33 +1,52 @@
 <template>
   <v-toolbar fixed dark class="black">
     <v-toolbar-title class="mr-4">
-      <span class="logo" @click="navigateTo({
-          name: 'home'})">
+      <router-link
+      class="logo" 
+      :to="{ 
+        name: 'home'
+        }">
         Blockbuster
-      </span>
+      </router-link>
     </v-toolbar-title>
     <v-toolbar-items>
-      <v-btn flat dark v-if="$store.state.isUserLogedIn" @click="navigateTo({
-        name: 'movies-add'})">Add movie
+      <v-btn flat dark v-if="$store.state.isUserLogedIn" 
+      :to="{
+        name: 'movies-add'
+        }">
+        Add movie
       </v-btn>
-      <v-btn flat dark @click="navigateTo({
-        name: 'movies'})">Movies
+      <v-btn 
+      flat 
+      dark 
+      :to="{
+        name: 'movies'
+        }">
+        Movies
       </v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
   <v-toolbar-items>
-    <v-btn flat dark v-if="!$store.state.isUserLogedIn"
-        @click="navigateTo({
-          name: 'login'})">
+    <v-btn 
+    flat 
+    dark v-if="!$store.state.isUserLogedIn"
+        :to="{
+          name: 'login'
+          }">
         Login
       </v-btn>
-      <v-btn flat dark v-if="!$store.state.isUserLogedIn"
-        @click="navigateTo({
-          name: 'register'})">
+      <v-btn 
+      flat
+      dark  v-if="!$store.state.isUserLogedIn"
+        :to="{
+          name: 'register'
+          }">
         Sign Up!
       </v-btn>
-      <v-btn flat dark v-if="$store.state.isUserLogedIn" class="cart-icon" @click="navigateTo({
-          name: 'cart'})">
+      <v-btn flat dark v-if="$store.state.isUserLogedIn" class="cart-icon" 
+      :to="{
+          name: 'cart'
+          }">
         <i class="fas fa-shopping-cart"></i>
       </v-btn>
       <v-btn flat dark v-if="$store.state.isUserLogedIn"
@@ -42,13 +61,12 @@
 <script>
 export default {
   methods: {
-    navigateTo (route) {
-      this.$router.push(route)
-    },
     logout (route) {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
-      this.$router.push(route)
+      this.$router.push({
+        name: 'movies'
+      })
     }
   }
 }

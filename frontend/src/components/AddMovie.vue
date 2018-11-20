@@ -50,7 +50,9 @@
           :rules="[required]"
           v-model="movie.movieCoverUrl"
         ></v-text-field>
-        <div class="error-text">{{error }}</div>
+        <div class="danger-alert">
+          {{error }}
+        </div>
          <v-btn
           dark
           class="darkgrey"
