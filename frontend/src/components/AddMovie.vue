@@ -55,7 +55,7 @@ export default {
       }
 
       try {
-        await MoviesService.addMovie(this.movie);
+        await MoviesService.post(this.movie);
         this.$router.push({
           name: "movies"
         });
