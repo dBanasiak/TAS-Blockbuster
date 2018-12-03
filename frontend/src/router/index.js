@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Register from '@/components/Register'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
-import Movies from '@/components/Movies'
+import Movies from '@/components/Movies/Index'
 import AddMovie from '@/components/AddMovie'
 import Cart from '@/components/Cart'
 
@@ -40,6 +40,10 @@ export default new Router({
       path: '/movies/add',
       name: 'movies-add',
       component: AddMovie
+    },
+    {
+      path: '*',
+      redirect: 'movies'
     }
   ]
 })
