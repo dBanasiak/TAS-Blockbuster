@@ -46,7 +46,7 @@ export default {
     UserPanel
   },
   async mounted() {
-    this.movies = (await MoviesService.getAllMovies()).data;
+    this.movies = (await MoviesService.index()).data;
   },
   data() {
     return {

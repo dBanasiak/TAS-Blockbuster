@@ -2,7 +2,7 @@
   <v-layout column>
     <v-flex>
       <movies-search-panel/>
-      <movies-panel/>
+      <movies-panel class="mt-4"/>
     </v-flex>
   </v-layout>
 </template>
@@ -20,7 +20,7 @@ export default {
     MoviesSearchPanel
   },
   async mounted() {
-    this.movies = (await MoviesService.getAllMovies()).data;
+    this.movies = (await MoviesService.index()).data;
   },
   data() {
     return {
