@@ -2,6 +2,20 @@
   <v-layout column>
     <v-flex>
        <UserPanel class="movie-items" title="Movies">
+          <form class="darkgrey"
+          name="blockbuster-form"
+          autocomplete="on">
+        <v-text-field
+            label="Search"
+            id="search"
+            v-model="search"
+            class="search"
+        ></v-text-field>
+        <v-btn flat @click="search">
+              <v-icon>fas fa-search</v-icon>
+          <span>Search</span>
+        </v-btn>
+        </form>
          <div v-for="movie in movies" class="movie-panel" :key="movie.title">
            <div class="movie-left-panel">
             <div class="movie-rate">Rate: {{movie.rate}}</div>
@@ -44,6 +58,14 @@ export default {
   data () {
     return {
       movies: null
+    }
+  },
+  methods: {
+    async search () {
+      const search = document.querySelector('#search');
+      if(search.value.includes('text')){
+        console.log('some text')
+      }
     }
   }
 }
