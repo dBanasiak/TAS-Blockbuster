@@ -1,44 +1,8 @@
 <template>
   <v-layout column>
     <v-flex>
-      <UserPanel class="movie-items" title="Movies">
-        <div v-for="movie in movies" class="movie-panel" :key="movie.title">
-          <div class="movie-left-panel">
-            <div class="movie-rate">Rate: {{movie.rate}}</div>
-            <div class="movie-description">
-              <strong>Description:</strong>
-              <div class="movie-block">{{movie.description}}</div>
-            </div>
-            <div class="movie-cast">
-              <strong>Director:</strong>
-              {{movie.director}}
-              <span>|</span>
-              <strong>Writers:</strong>
-              {{movie.writers}}
-              <br>
-              <strong>Stars:</strong>
-              {{movie.stars}}
-            </div>
-            <v-btn class="movie-button" flat v-if="$store.state.isUserLogedIn">
-              <i class="fas fa-plus"></i>
-              Add to watchlist
-            </v-btn>
-            <v-btn class="movie-button" flat v-if="$store.state.isUserLogedIn">
-              <i class="fas fa-heart"></i>
-              <span>Add to wishlist</span>
-            </v-btn>
-          </div>
-          <div class="movie-right-panel">
-            <div class="movie-status">{{movie.status}}</div>
-            <img :src="movie.movieCoverUrl" class="movie-image">
-            <h2 class="movie-title">
-              {{movie.title}}
-              <span class="movie-date">{{movie.date}}</span>
-            </h2>
-          </div>
-        </div>
-      </UserPanel>
       <movies-search-panel/>
+      <movies-panel/>
     </v-flex>
   </v-layout>
 </template>
@@ -46,12 +10,14 @@
 <script>
 import MoviesPanel from "./MoviesPanel";
 import MoviesService from "@/services/MoviesService";
-import UserPanel from "@/components/UserPanel";
+import UserPanel from "@/components/globals/UserPanel";
+import MoviesSearchPanel from "./MoviesSearchPanel";
 
 export default {
   components: {
     UserPanel,
-    MoviesPanel
+    MoviesPanel,
+    MoviesSearchPanel
   },
   async mounted() {
     this.movies = (await MoviesService.getAllMovies()).data;

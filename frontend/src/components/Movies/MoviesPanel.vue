@@ -40,7 +40,7 @@
 
 <script>
 import MoviesService from "@/services/MoviesService";
-import UserPanel from "@/components/UserPanel";
+import UserPanel from "@/components/globals/UserPanel";
 
 export default {
   components: {
@@ -57,6 +57,14 @@ export default {
   methods: {
     navigateTo(route) {
       this.$route.push(route);
+    }
+  },
+  watch: {
+    "$route.query.search": {
+      imemediate: true,
+      async handler(value) {
+        this.movies = await MoviesService.index(value);
+      }
     }
   }
 };
