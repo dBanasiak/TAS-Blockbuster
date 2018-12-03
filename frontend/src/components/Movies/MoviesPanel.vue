@@ -1,5 +1,5 @@
 <template>
-  <MoviesPanel class="movie-items" title="Movies">
+  <UserPanel class="movie-items" title="Movies">
     <div v-for="movie in movies" class="movie-panel" :key="movie.title">
       <div class="movie-left-panel">
         <div class="movie-rate">Rate: {{movie.rate}}</div>
@@ -35,19 +35,19 @@
         </h2>
       </div>
     </div>
-  </MoviesPanel>
+  </UserPanel>
 </template>
 
 <script>
 import MoviesService from "@/services/MoviesService";
-import UserPanel from "@/components/UserPanel";
+import UserPanel from "@/components/globals/UserPanel";
 
 export default {
   components: {
     UserPanel
   },
   async mounted() {
-    this.movies = (await MoviesService.getAllMovies()).data;
+    this.movies = (await MoviesService.index()).data;
   },
   data() {
     return {
@@ -57,6 +57,14 @@ export default {
   methods: {
     navigateTo(route) {
       this.$route.push(route);
+    }
+  },
+  watch: {
+    "$route.query.search": {
+      imemediate: true,
+      async handler(value) {
+        this.movies = await MoviesService.index(value).data;
+      }
     }
   }
 };
