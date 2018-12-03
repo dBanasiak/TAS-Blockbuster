@@ -1,97 +1,129 @@
 <template>
-  <panel title="Movies">
-    <v-btn
-      slot="action"
-      :to="{
-        name: 'movie-create'
-      }"
-      class="cyan accent-2"
-      light
-      medium
-      absolute
-      right
-      middle
-      fab>
-      <v-icon>add</v-icon>
-    </v-btn>
-
-    <div 
-      v-for="movie in Movies"
-      class="movie"
-      :key="movie.id">
-
-      <v-layout>
-        <v-flex xs6>
-          <div class="movie-title">
-            {{movie.title}}
-          </div>
-          <div class="movie-director">
-            {{movie.director}}
-          </div>
-          <div class="movie-writers">
-            {{movie.writers}}
-          </div>
-          <div class="movie-stars">
-            {{movie.stars}}
-          </div>
-
-          <!-- <v-btn
-            dark
-            class="cyan"
-            :to="{
-              name: 'movie', 
-              params: {
-                movieId: movie.id
-              }
-            }">
-            View
-          </v-btn> -->
-        </v-flex>
-
-        <v-flex xs6>
-          <img class="movie-image" :src="movie.movieCoverUrl" />
-        </v-flex>
-      </v-layout>
+  <MoviesPanel class="movie-items" title="Movies">
+    <div v-for="movie in movies" class="movie-panel" :key="movie.title">
+      <div class="movie-left-panel">
+        <div class="movie-rate">Rate: {{movie.rate}}</div>
+        <div class="movie-description">
+          <strong>Description:</strong>
+          <div class="movie-block">{{movie.description}}</div>
+        </div>
+        <div class="movie-cast">
+          <strong>Director:</strong>
+          {{movie.director}}
+          <span>|</span>
+          <strong>Writers:</strong>
+          {{movie.writers}}
+          <br>
+          <strong>Stars:</strong>
+          {{movie.stars}}
+        </div>
+        <v-btn class="movie-button" flat v-if="$store.state.isUserLogedIn">
+          <i class="fas fa-plus"></i>
+          Add to watchlist
+        </v-btn>
+        <v-btn class="movie-button" flat v-if="$store.state.isUserLogedIn">
+          <i class="fas fa-heart"></i>
+          <span>Add to wishlist</span>
+        </v-btn>
+      </div>
+      <div class="movie-right-panel">
+        <div class="movie-status">{{movie.status}}</div>
+        <img :src="movie.movieCoverUrl" class="movie-image">
+        <h2 class="movie-title">
+          {{movie.title}}
+          <span class="movie-date">{{movie.date}}</span>
+        </h2>
+      </div>
     </div>
-  </panel>
+  </MoviesPanel>
 </template>
 
 <script>
-import MoviesService from '@/services/MoviesService'
+import MoviesService from "@/services/MoviesService";
+import UserPanel from "@/components/UserPanel";
+
 export default {
-  data () {
+  components: {
+    UserPanel
+  },
+  async mounted() {
+    this.movies = (await MoviesService.getAllMovies()).data;
+  },
+  data() {
     return {
       movies: null
-    }
+    };
   },
-  watch: {
-    '$route.query.search': {
-      immediate: true,
-      async handler (value) {
-        this.movies = (await MovieService.index(value)).data
-      }
+  methods: {
+    navigateTo(route) {
+      this.$route.push(route);
     }
   }
-}
+};
 </script>
 
 <style scoped>
-.song {
-  padding: 20px;
-  height: 330px;
-  overflow: hidden;
+.movie-panel {
+  display: grid;
+  grid-template-areas: "movie-left-panel movie-right-panel";
+  align-items: end;
+  position: relative;
+  grid-template-columns: 75% 25%;
+  border-bottom: 2px solid #555;
+  margin-bottom: 64px;
 }
-.song-title {
-  font-size: 30px;
+
+.movie-right-panel {
+  padding: 16px;
+  grid-area: movie-right-panel;
 }
-.song-artist {
-  font-size: 24px;
+
+.movie-left-panel {
+  padding: 16px;
+  grid-area: movie-left-panel;
+  text-align: left;
 }
-.song-genre {
-  font-size: 18px;
+
+.movie-description {
+  font-size: 1.4em;
+  padding-bottom: 16px;
 }
-.album-image {
-  width: 70%;
+
+.movie-date {
+  font-size: 0.8em;
+  font-weight: 300;
+}
+
+.movie-rate {
+  text-align: right;
+  padding-right: 24px;
+  font-size: 4em;
+  position: absolute;
+  top: 0;
+  right: calc(25%);
+}
+
+.movie-items {
+  width: 60vw;
   margin: 0 auto;
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.movie-button {
+  color: black;
+  background-color: yellow;
+  font-family: "Roboto Condensed", sans-serif;
+  margin: 16px 0;
+  margin-right: 16px;
+}
+
+.movie-block {
+  background-color: whitesmoke;
+  padding: 8px;
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
 }
 </style>
