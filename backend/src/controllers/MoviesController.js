@@ -9,7 +9,7 @@ module.exports = {
         movies = await Movies.findAll({
           where: {
             $or: [
-              'title', 'director'
+              'title', 'director', 'stars', 'status'
             ].map(key => ({
               [key]: {
                 $like: `%${search}%`
