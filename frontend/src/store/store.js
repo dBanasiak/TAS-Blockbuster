@@ -29,8 +29,14 @@ export default new Vuex.Store({
         state.cart.push (movie)
       }
     },
-    clearCart (state){
+    clearCart (state) {
       state.cart.length = 0
+    },
+    removeFromCart (state, movie) {
+      const index = state.cart.findIndex(m => m === movie)
+      if (index != null) {
+        state.cart.splice (index,1)
+      }
     }
     
   },
@@ -46,6 +52,9 @@ export default new Vuex.Store({
     },
     clearCart ({commit}) {
       commit('clearCart')
+    },
+    removeFromCart ({commit}, movie) {
+      commit('removeFromCart', movie)
     }
   }
 })

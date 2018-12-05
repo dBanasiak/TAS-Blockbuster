@@ -19,7 +19,7 @@
               <strong>Stars:</strong>
               {{movie.stars}}
             </div>
-            <v-btn class="movie-button-remove" flat v-if="$store.state.isUserLogedIn">
+            <v-btn @click="removeFromCart(movie)" class="movie-button-remove" flat v-if="$store.state.isUserLogedIn">
               <i class="fas fa-plus"></i>
               Remove from cart
             </v-btn>
@@ -47,6 +47,11 @@ export default {
   },
   async mounted() {
     this.movies = await this.$store.state.cart;
+  },
+  methods: {
+    removeFromCart(movie){
+      this.$store.dispatch('removeFromCart', movie)
+     }
   },
   data() {
     return {
