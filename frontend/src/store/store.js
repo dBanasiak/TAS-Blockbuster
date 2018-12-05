@@ -26,7 +26,10 @@ export default new Vuex.Store({
     },
     addToCart (state, movie) {
       if(state.cart.length < 3){
-        state.cart.push (movie)
+        const index = state.cart.findIndex(m => m === movie)
+        if(index == -1){
+          state.cart.push (movie)
+        }
       }
     },
     clearCart (state) {
@@ -34,7 +37,7 @@ export default new Vuex.Store({
     },
     removeFromCart (state, movie) {
       const index = state.cart.findIndex(m => m === movie)
-      if (index != null) {
+      if (index != -1) {
         state.cart.splice (index,1)
       }
     }
