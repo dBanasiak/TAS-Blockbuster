@@ -25,7 +25,16 @@
           <i class="fas fa-heart"></i>
           <span>Add to wishlist</span>
         </v-btn>
+        <v-btn class="movie-button" flat v-if="$store.state.isUserLogedIn">
+          <i class="fas fa-plus"></i>
+          <span> Add to cart</span>
+      </v-btn>
+
       </div>
+    
+      
+
+
       <div class="movie-right-panel">
         <div class="movie-status">{{movie.status}}</div>
         <img :src="movie.movieCoverUrl" class="movie-image">
@@ -40,6 +49,7 @@
 
 <script>
 import MoviesService from "@/services/MoviesService";
+import UserPanel from "@/components/globals/UserPanel";
 export default {
   data() {
     return {
@@ -53,6 +63,9 @@ export default {
         this.movies = (await MoviesService.index(value)).data;
       }
     }
+  },
+  components: {
+    UserPanel
   }
 };
 </script>
