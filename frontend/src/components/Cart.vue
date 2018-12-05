@@ -46,7 +46,7 @@ export default {
     UserPanel
   },
   async mounted() {
-    this.movies = (await MoviesService.index()).data;
+    this.movies = await this.$store.state.cart;
   },
   data() {
     return {

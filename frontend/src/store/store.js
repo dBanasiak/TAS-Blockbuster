@@ -8,8 +8,9 @@ export default new Vuex.Store({
   state: {
     token: null,
     user: null,
-    isUserLogedIn: false,
-    isAdmin: false
+    isUserLogedIn: false, 
+    isAdmin: false,
+    cart: []
   },
   mutations: {
     setToken (state, token) {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     },
     setUser (state, user) {
       state.user = user
+    },
+    addToCart (state, movie) {
+      state.cart.push (movie)
     }
   },
   actions: {
@@ -30,6 +34,9 @@ export default new Vuex.Store({
     },
     setUser ({ commit }, token) {
       commit('setUser', token)
+    },
+    addToCart ({ commit }, movie) {
+      commit('addToCart', movie)
     }
   }
 })
