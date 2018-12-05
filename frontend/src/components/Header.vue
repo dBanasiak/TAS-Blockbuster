@@ -64,6 +64,7 @@ export default {
     logout(route) {
       this.$store.dispatch("setToken", null);
       this.$store.dispatch("setUser", null);
+      this.$store.dispatch('clearCart');
       this.$router.push({
         name: "movies"
       });

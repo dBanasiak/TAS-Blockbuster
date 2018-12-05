@@ -25,10 +25,14 @@ export default new Vuex.Store({
       state.user = user
     },
     addToCart (state, movie) {
-    if(state.cart.length < 3){
-      state.cart.push (movie)
+      if(state.cart.length < 3){
+        state.cart.push (movie)
+      }
+    },
+    clearCart (state){
+      state.cart.length = 0
     }
-    }
+    
   },
   actions: {
     setToken ({ commit }, token) {
@@ -39,6 +43,9 @@ export default new Vuex.Store({
     },
     addToCart ({ commit }, movie) {
       commit('addToCart', movie)
+    },
+    clearCart ({commit}) {
+      commit('clearCart')
     }
   }
 })
