@@ -25,7 +25,9 @@ export default new Vuex.Store({
       state.user = user
     },
     addToCart (state, movie) {
+    if(state.cart.length < 3){
       state.cart.push (movie)
+    }
     }
   },
   actions: {
