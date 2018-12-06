@@ -16,14 +16,6 @@ module.exports = (app) => {
   app.post('/login',
     AuthenticationController.login)
 
-  // /* API: All movies endpoint */
-  // app.get('/movies',
-  //   MoviesController.getAllMovies)
-
-  // /* API: Add new movie endpoint */
-  // app.post('/movies',
-  //   MoviesController.addMovie)
-
   app.get('/movies',
     MoviesController.index)
   app.get('/movies/:movieId',
