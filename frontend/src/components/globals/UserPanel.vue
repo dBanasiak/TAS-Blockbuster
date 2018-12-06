@@ -9,7 +9,7 @@
       <slot>
         <p class="ups">
         <span class="cats">龴ↀ◡ↀ龴 </span>
-        Ups... something went wrong
+        Your cart is empty
         <span class="cats">龴ↀ◡ↀ龴 </span>
         </p>
       </slot>
