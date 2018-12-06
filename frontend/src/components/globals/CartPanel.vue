@@ -1,17 +1,13 @@
 <template>
   <v-card>
     <v-toolbar dark>
-      <v-toolbar-title>
-        {{title}}
-      </v-toolbar-title>
+      <v-toolbar-title>{{title}}</v-toolbar-title>
     </v-toolbar>
     <div class="pt-3 pr-4 pb-3 pl-4">
       <slot>
-        <p class="ups">
-        <span class="cats">龴ↀ◡ↀ龴 </span>
-          Ups somethings went wrong
-        <span class="cats">龴ↀ◡ↀ龴 </span>
-        </p>
+        <i class="fas fa-cat"></i>
+        <p class="ups">Your cart is empty</p>
+        <i class="fas fa-cat"></i>
       </slot>
     </div>
   </v-card>
@@ -20,10 +16,8 @@
 
 <script>
 export default {
-  props: [
-    'title'
-  ]
-}
+  props: ["title"]
+};
 </script>
 
 <style scoped>

@@ -19,7 +19,7 @@ module.exports = {
         })
       } else {
         movies = await Movies.findAll({
-          limit: 10
+          limit: 25
         })
       }
       res.send(movies)
