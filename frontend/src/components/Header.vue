@@ -1,80 +1,83 @@
 <template>
   <v-toolbar fixed dark class="black">
     <v-toolbar-title class="mr-4">
-      <router-link
-      class="logo" 
-      :to="{ 
+      <router-link class="logo" :to="{ 
         name: 'home'
-        }">
-        Blockbuster
-      </router-link>
+        }">Blockbuster</router-link>
     </v-toolbar-title>
     <v-toolbar-items>
-      <v-btn flat dark v-if="$store.state.isUserLogedIn" 
-      :to="{
+      <v-btn
+        flat
+        dark
+        v-if="$store.state.isUserLogedIn"
+        :to="{
         name: 'movies-add'
-        }">
-        Add movie
-      </v-btn>
-      <v-btn 
-      flat 
-      dark 
-      :to="{
+        }"
+      >Add movie</v-btn>
+      <v-btn flat dark :to="{
         name: 'movies'
-        }">
-        Movies
-      </v-btn>
+        }">Movies</v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
-  <v-toolbar-items>
-    <v-btn 
-    flat 
-    dark v-if="!$store.state.isUserLogedIn"
+    <v-toolbar-items>
+      <v-btn
+        flat
+        dark
+        v-if="!$store.state.isUserLogedIn"
         :to="{
           name: 'login'
-          }">
-        Login
-      </v-btn>
-      <v-btn 
-      flat
-      dark  v-if="!$store.state.isUserLogedIn"
+          }"
+      >Login</v-btn>
+      <v-btn
+        flat
+        dark
+        v-if="!$store.state.isUserLogedIn"
         :to="{
           name: 'register'
-          }">
-        Sign Up!
-      </v-btn>
-      <v-btn flat dark v-if="$store.state.isUserLogedIn" class="cart-icon" 
-      :to="{
+          }"
+      >Sign Up!</v-btn>
+      <v-btn
+        flat
+        dark
+        v-if="$store.state.isUserLogedIn"
+        class="cart-icon"
+        :to="{
           name: 'cart'
-          }">
+          }"
+      >
         <i class="fas fa-shopping-cart"></i>
       </v-btn>
-      <v-btn flat dark v-if="$store.state.isUserLogedIn"
+      <v-btn
+        flat
+        dark
+        v-if="$store.state.isUserLogedIn"
         @click="logout({
-          name: 'home'})">
-        Log Out
-      </v-btn>
-  </v-toolbar-items>
+          name: 'home'})"
+      >Log Out</v-btn>
+    </v-toolbar-items>
   </v-toolbar>
 </template>
 
 <script>
 export default {
   methods: {
-    logout (route) {
-      this.$store.dispatch('setToken', null)
-      this.$store.dispatch('setUser', null)
+    logout(route) {
+      this.$store.dispatch("setToken", null);
+      this.$store.dispatch("setUser", null);
+      this.$store.dispatch('clearCart');
       this.$router.push({
-        name: 'movies'
-      })
+        name: "movies"
+      });
     }
   }
-}
+};
 </script>
 <style scoped>
 .logo {
   cursor: pointer;
-  transition-duration: .3s;
+  color: white;
+  text-decoration: none;
+  transition-duration: 0.3s;
 }
 
 .logo:hover {

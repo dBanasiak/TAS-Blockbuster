@@ -9,7 +9,7 @@ module.exports = {
         movies = await Movies.findAll({
           where: {
             $or: [
-              'title', 'director'
+              'title', 'director', 'stars', 'status'
             ].map(key => ({
               [key]: {
                 $like: `%${search}%`
@@ -19,7 +19,7 @@ module.exports = {
         })
       } else {
         movies = await Movies.findAll({
-          limit: 10
+          limit: 25
         })
       }
       res.send(movies)

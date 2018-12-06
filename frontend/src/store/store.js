@@ -8,8 +8,9 @@ export default new Vuex.Store({
   state: {
     token: null,
     user: null,
-    isUserLogedIn: false,
-    isAdmin: false
+    isUserLogedIn: false, 
+    isAdmin: false,
+    cart: []
   },
   mutations: {
     setToken (state, token) {
@@ -22,7 +23,25 @@ export default new Vuex.Store({
     },
     setUser (state, user) {
       state.user = user
+    },
+    addToCart (state, movie) {
+      if(state.cart.length < 3){
+        const index = state.cart.findIndex(m => m === movie)
+        if(index == -1){
+          state.cart.push (movie)
+        }
+      }
+    },
+    clearCart (state) {
+      state.cart.length = 0
+    },
+    removeFromCart (state, movie) {
+      const index = state.cart.findIndex(m => m === movie)
+      if (index != -1) {
+        state.cart.splice (index,1)
+      }
     }
+    
   },
   actions: {
     setToken ({ commit }, token) {
@@ -30,6 +49,15 @@ export default new Vuex.Store({
     },
     setUser ({ commit }, token) {
       commit('setUser', token)
+    },
+    addToCart ({ commit }, movie) {
+      commit('addToCart', movie)
+    },
+    clearCart ({commit}) {
+      commit('clearCart')
+    },
+    removeFromCart ({commit}, movie) {
+      commit('removeFromCart', movie)
     }
   }
 })
