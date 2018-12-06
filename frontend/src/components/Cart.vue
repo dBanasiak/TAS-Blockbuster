@@ -1,7 +1,7 @@
 <template>
   <v-layout column>
     <v-flex>
-      <UserPanel class="movie-items" title="Cart">
+      <CartPanel class="movie-items" title="Cart">
         <div v-for="movie in movies" class="movie-panel" :key="movie.title">
           <div class="movie-left-panel">
             <div class="movie-rate">Rate: {{movie.rate}}</div>
@@ -19,13 +19,17 @@
               <strong>Stars:</strong>
               {{movie.stars}}
             </div>
-            <v-btn @click="removeFromCart(movie)" class="movie-button-remove" flat v-if="$store.state.isUserLogedIn">
+            <v-btn
+              @click="removeFromCart(movie)"
+              class="movie-button-remove"
+              flat
+              v-if="$store.state.isUserLogedIn"
+            >
               <i class="fas fa-plus"></i>
               Remove from cart
             </v-btn>
           </div>
           <div class="movie-right-panel">
-            <div class="movie-status">{{movie.status}}</div>
             <img :src="movie.movieCoverUrl" class="movie-image">
             <h2 class="movie-title">
               {{movie.title}}
@@ -33,25 +37,25 @@
             </h2>
           </div>
         </div>
-      </UserPanel>
+      </CartPanel>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
 import MoviesService from "@/services/MoviesService";
-import UserPanel from "@/components/globals/UserPanel";
+import CartPanel from "@/components/globals/CartPanel";
 export default {
   components: {
-    UserPanel
+    CartPanel
   },
   async mounted() {
     this.movies = await this.$store.state.cart;
   },
   methods: {
-    removeFromCart(movie){
-      this.$store.dispatch('removeFromCart', movie)
-     }
+    removeFromCart(movie) {
+      this.$store.dispatch("removeFromCart", movie);
+    }
   },
   data() {
     return {
