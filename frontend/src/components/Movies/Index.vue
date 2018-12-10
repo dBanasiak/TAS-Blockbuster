@@ -2,6 +2,7 @@
   <v-layout column>
     <v-flex>
       <movies-search-panel/>
+      <movies-tag/>
       <movies-panel class="mt-4"/>
     </v-flex>
   </v-layout>
@@ -12,12 +13,14 @@ import MoviesPanel from "./MoviesPanel";
 import MoviesService from "@/services/MoviesService";
 import UserPanel from "@/components/globals/UserPanel";
 import MoviesSearchPanel from "./MoviesSearchPanel";
+import MoviesTag from "./MoviesTag";
 
 export default {
   components: {
     UserPanel,
     MoviesPanel,
-    MoviesSearchPanel
+    MoviesSearchPanel,
+    MoviesTag
   },
   async mounted() {
     this.movies = (await MoviesService.index()).data;

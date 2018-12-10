@@ -29,7 +29,8 @@ export default {
       try {
         const response = await AuthenticationService.login({
           email: this.email,
-          password: this.password
+          password: this.password,
+          type: "regular"
         });
         this.$store.dispatch("setToken", response.data.token);
         this.$store.dispatch("setUser", response.data.user);

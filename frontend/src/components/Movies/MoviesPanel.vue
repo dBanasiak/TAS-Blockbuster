@@ -25,15 +25,16 @@
           <i class="fas fa-heart"></i>
           <span>Add to wishlist</span>
         </v-btn>
-        <v-btn @click="addToCart(movie)" class="movie-button" flat v-if="$store.state.isUserLogedIn">
+        <v-btn
+          @click="addToCart(movie)"
+          class="movie-button"
+          flat
+          v-if="$store.state.isUserLogedIn"
+        >
           <i class="fas fa-plus"></i>
           <span>Add to cart</span>
-      </v-btn>
-
+        </v-btn>
       </div>
-    
-      
-
 
       <div class="movie-right-panel">
         <div class="movie-status">{{movie.status}}</div>
@@ -69,7 +70,7 @@ export default {
   },
   methods: {
     addToCart(movie) {
-      this.$store.dispatch('addToCart', movie)
+      this.$store.dispatch("addToCart", movie);
     }
   }
 };

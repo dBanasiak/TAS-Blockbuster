@@ -8,6 +8,7 @@
         <v-text-field label="Director" required :rules="[required]" v-model="movie.director"></v-text-field>
         <v-text-field label="Writers" required :rules="[required]" v-model="movie.writers"></v-text-field>
         <v-text-field label="Stars" required :rules="[required]" v-model="movie.stars"></v-text-field>
+        <v-text-field label="Genre" required :rules="[required]" v-model="movie.genre"></v-text-field>
         <v-text-field label="Rate" required :rules="[required]" v-model="movie.rate"></v-text-field>
         <v-text-field label="Cover URL" required :rules="[required]" v-model="movie.movieCoverUrl"></v-text-field>
         <div class="danger-alert">{{error }}</div>
@@ -32,6 +33,7 @@ export default {
         director: null,
         writers: null,
         stars: null,
+        genre: null,
         rate: null,
         movieCoverUrl: null
       },
