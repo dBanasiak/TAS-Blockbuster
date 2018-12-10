@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     token: null,
     user: null,
-    isUserLogedIn: false, 
+    isUserLogedIn: false,
     isAdmin: false,
     cart: []
   },
@@ -23,6 +23,11 @@ export default new Vuex.Store({
     },
     setUser (state, user) {
       state.user = user
+      if(state.user.type === 'admin') {
+        state.isAdmin = true;
+      } else {
+        state.isAdmin = false;
+      }
     },
     addToCart (state, movie) {
       if(state.cart.length < 3){

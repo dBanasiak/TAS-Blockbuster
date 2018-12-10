@@ -55,6 +55,9 @@ export default {
   methods: {
     removeFromCart(movie) {
       this.$store.dispatch("removeFromCart", movie);
+      const cartCounter = document.querySelector("#cartCounter");
+      let cartAmount = parseInt(cartCounter.innerHTML);
+      cartCounter.innerHTML = cartAmount - 1;
     }
   },
   data() {
@@ -137,5 +140,32 @@ export default {
 
 .movie-button {
   background-color: yellow;
+}
+
+@media only screen and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .movie-items {
+    width: 90vw;
+  }
+
+  .movie-rate {
+    font-size: 2em;
+  }
+
+  .movie-right-panel {
+    padding: 16px;
+  }
+
+  .movie-left-panel {
+    text-align: left;
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  .movie-panel {
+    display: block;
+  }
+  .movie-rate {
+    position: relative;
+  }
 }
 </style>

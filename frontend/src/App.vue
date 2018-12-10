@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import PageHeader from '@/components/Header.vue'
+import PageHeader from "@/components/Header.vue";
 export default {
-  name: 'app',
+  name: "app",
   components: {
     PageHeader
   }
-}
+};
 </script>
 
 <style>
@@ -27,7 +27,7 @@ font-family: 'Roboto Condensed', sans-serif;
 font-family: 'Chakra Petch', sans-serif;
 */
 #app {
-  font-family: 'Chakra Petch', sans-serif;
+  font-family: "Chakra Petch", sans-serif;
   text-align: center;
   color: #3e3e3e;
   margin-top: 60px;

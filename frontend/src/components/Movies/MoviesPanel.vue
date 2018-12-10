@@ -17,14 +17,6 @@
           <strong>Stars:</strong>
           {{movie.stars}}
         </div>
-        <v-btn class="movie-button" flat v-if="$store.state.isUserLogedIn">
-          <i class="fas fa-plus"></i>
-          Add to watchlist
-        </v-btn>
-        <v-btn class="movie-button" flat v-if="$store.state.isUserLogedIn">
-          <i class="fas fa-heart"></i>
-          <span>Add to wishlist</span>
-        </v-btn>
         <v-btn
           @click="addToCart(movie)"
           class="movie-button"
@@ -43,6 +35,8 @@
           {{movie.title}}
           <span class="movie-date">{{movie.date}}</span>
         </h2>
+        <strong>Genre:</strong>
+        {{movie.genre}}
       </div>
     </div>
   </UserPanel>
@@ -71,6 +65,14 @@ export default {
   methods: {
     addToCart(movie) {
       this.$store.dispatch("addToCart", movie);
+      const cartCounter = document.querySelector("#cartCounter");
+      let cartAmount = parseInt(cartCounter.innerHTML);
+      if (cartAmount < 3) {
+        cartCounter.innerHTML = cartAmount + 1;
+      }
+      if (parseInt(cartAmount) === 3) {
+        alert("You can only rent three movies");
+      }
     }
   }
 };
@@ -139,5 +141,36 @@ export default {
   -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+img {
+  max-width: 100%;
+}
+
+@media only screen and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .movie-items {
+    width: 90vw;
+  }
+
+  .movie-rate {
+    font-size: 2em;
+  }
+
+  .movie-right-panel {
+    padding: 16px;
+  }
+
+  .movie-left-panel {
+    text-align: left;
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  .movie-panel {
+    display: block;
+  }
+  .movie-rate {
+    position: relative;
+  }
 }
 </style>
