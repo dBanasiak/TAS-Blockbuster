@@ -32,9 +32,10 @@ export default new Vuex.Store({
         }
       }
     },
-    clearCart (state) {
-      state.cart.length = 0
-    },
+    // Clear cart after logout
+    // clearCart (state) {
+    //   state.cart.length = 0
+    // },
     removeFromCart (state, movie) {
       const index = state.cart.findIndex(m => m === movie)
       if (index != -1) {
@@ -53,9 +54,10 @@ export default new Vuex.Store({
     addToCart ({ commit }, movie) {
       commit('addToCart', movie)
     },
-    clearCart ({commit}) {
-      commit('clearCart')
-    },
+    // Clear cart after logout
+    // clearCart ({commit}) {
+    //   commit('clearCart')
+    // },
     removeFromCart ({commit}, movie) {
       commit('removeFromCart', movie)
     }
